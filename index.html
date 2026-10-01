@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For My Babuuu ♡</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html,
+    body {
+        width: 100%;
+        min-height: 100%;
+    }
+
+    body {
+        font-family: "Cormorant Garamond", serif;
+        background: #111;
+        color: #fff;
+        overflow-x: hidden;
+    }
+
+    /* =========================================
+       BACKGROUND
+       ========================================= */
+
+    .background {
+        position: fixed;
+        inset: 0;
+        background:
+            linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.35)),
+            url("background.jpg") center center / cover no-repeat;
+        z-index: -2;
+        transform: scale(1.02);
+    }
+
+    .overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.18);
+        z-index: -1;
+        pointer-events: none;
+    }
+
+    /* =========================================
+       START SCREEN
+       ========================================= */
+
+    .start-screen {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 25px;
+        transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    .start-screen.hide {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+
+    .start-content {
+        text-align: center;
+        animation: fadeUp 1.5s ease;
+    }
+
+    .small-text {
+        font-size: 1rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        opacity: 0.9;
+    }
+
+    .start-title {
+        font-family: "Great Vibes", cursive;
+        font-size: clamp(3.3rem, 10vw, 6rem);
+        line-height: 1;
+        text-shadow: 0 4px 25px rgba(0,0,0,0.4);
+    }
+
+    .instruction {
+        margin-top: 15px;
+        font-size: 1.15rem;
+        opacity: 0.9;
+    }
+
+    /* =========================================
+       BIKE
+       ========================================= */
+
+    .bike-wrap {
+        margin-top: 35px;
+    }
+
+    .bike {
+        border: none;
+        background: transparent;
+        font-size: clamp(5rem, 15vw, 8rem);
+        cursor: pointer;
+        transition: transform 0.25s ease;
+        filter: drop-shadow(0 8px 15px rgba(0,0,0,0.35));
+        animation: bikeFloat 2s ease-in-out infinite;
+    }
+
+    .bike:hover {
+        transform: scale(1.1);
+    }
+
+    .bike:active {
+        transform: scale(0.95);
+    }
+
+    @keyframes bikeFloat {
+        0%, 100% {
+            transform: translateY(0) rotate(-1deg);
+        }
+
+        50% {
+            transform: translateY(-8px) rotate(1deg);
+        }
+    }
+
+    /* =========================================
+       BLAST
+       ========================================= */
+
+    .blast {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 20;
+        opacity: 0;
+    }
+
+    .blast.active {
+        animation: blast 0.85s ease-out forwards;
+    }
+
+    @keyframes blast {
+        0% {
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 1;
+            box-shadow:
+                0 0 0 0 rgba(255,255,255,0.9);
+        }
+
+        35% {
+            transform: translate(-50%, -50%) scale(2);
+            opacity: 1;
+            box-shadow:
+                0 0 0 20px rgba(255,255,255,0.18),
+                0 0 0 55px rgba(255,200,120,0.12),
+                0 0 70px rgba(255,255,255,0.45);
+        }
+
+        100% {
+            transform: translate(-50%, -50%) scale(12);
+            opacity: 0;
+            box-shadow:
+                0 0 0 100px rgba(255,255,255,0),
+                0 0 150px rgba(255,200,120,0);
+        }
+    }
+
+    /* =========================================
+       LETTER
+       ========================================= */
+
+    .letter-section {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 22px;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 1s ease, visibility 1s ease;
+        overflow-y: auto;
+    }
+
+    .letter-section.show {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    .letter {
+        width: min(700px, 94vw);
+        max-height: 88vh;
+        overflow-y: auto;
+        padding: clamp(28px, 5vw, 50px);
+        border-radius: 25px;
+
+        background:
+            linear-gradient(
+                135deg,
+                rgba(255,255,255,0.90),
+                rgba(255,248,242,0.84)
+            );
+
+        color: #33272a;
+
+        box-shadow:
+            0 25px 70px rgba(0,0,0,0.35),
+            0 0 0 1px rgba(255,255,255,0.45);
+
+        transform: translateY(25px) scale(0.94);
+        transition: transform 1s ease;
+
+        scrollbar-width: thin;
+    }
+
+    .letter-section.show .letter {
+        transform: translateY(0) scale(1);
+    }
+
+    .letter-top {
+        text-align: center;
+        margin-bottom: 24px;
+    }
+
+    .heart {
+        font-size: 1.6rem;
+        margin-bottom: 5px;
+    }
+
+    .letter-title {
+        font-family: "Great Vibes", cursive;
+        font-size: clamp(3rem, 9vw, 5rem);
+        font-weight: 400;
+        line-height: 1;
+        color: #6e414c;
+    }
+
+    .letter-line {
+        width: 80px;
+        height: 1px;
+        background: #b38a72;
+        margin: 13px auto 0;
+    }
+
+    .letter-text {
+        font-size: clamp(1.2rem, 2.6vw, 1.5rem);
+        line-height: 1.65;
+        text-align: left;
+    }
+
+    .letter-text strong {
+        color: #6e414c;
+        font-weight: 600;
+    }
+
+    .signature {
+        margin-top: 25px;
+        text-align: right;
+        font-family: "Great Vibes", cursive;
+        color: #6e414c;
+        font-size: 2.5rem;
+    }
+
+    /* =========================================
+       FLOATING HEARTS
+       ========================================= */
+
+    .hearts-container {
+        position: fixed;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 5;
+    }
+
+    .floating-heart {
+        position: absolute;
+        bottom: -30px;
+        animation: rise linear forwards;
+        opacity: 0;
+        user-select: none;
+    }
+
+    @keyframes rise {
+        0% {
+            transform: translateY(0) scale(0.7) rotate(0deg);
+            opacity: 0;
+        }
+
+        15% {
+            opacity: 0.75;
+        }
+
+        80% {
+            opacity: 0.55;
+        }
+
+        100% {
+            transform:
+                translateY(-110vh)
+                translateX(var(--drift))
+                scale(1.2)
+                rotate(18deg);
+            opacity: 0;
+        }
+    }
+
+    /* =========================================
+       MOBILE
+       ========================================= */
+
+    @media (max-width: 600px) {
+        .letter {
+            max-height: 90vh;
+            padding: 25px 20px;
+            border-radius: 20px;
+        }
+
+        .letter-text {
+            line-height: 1.55;
+        }
+
+        .signature {
+            font-size: 2.1rem;
+        }
+    }
+
+    /* =========================================
+       ANIMATIONS
+       ========================================= */
+
+    @keyframes fadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+</head>
+
+<body>
+
+    <!-- BACKGROUND -->
+    <div class="background"></div>
+    <div class="overlay"></div>
+
+    <!-- =========================================
+         START SCREEN
+         ========================================= -->
+
+    <section class="start-screen" id="startScreen">
+
+        <div class="start-content">
+
+            <div class="small-text">
+                a little something for you ♡
+            </div>
+
+            <h1 class="start-title">
+                Happyyy<br>
+                Bandaaa Dayyy 🫠
+            </h1>
+
+            <p class="instruction">
+                I have something for you...
+            </p>
+
+            <div class="bike-wrap">
+
+                <button
+                    class="bike"
+                    id="bikeButton"
+                    aria-label="Open your surprise">
+                    🏍️
+                </button>
+
+            </div>
+
+            <p class="instruction">
+                click me hehe
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         BLAST
+         ========================================= -->
+
+    <div class="blast" id="blast"></div>
+
+
+    <!-- =========================================
+         HEARTS
+         ========================================= -->
+
+    <div class="hearts-container" id="heartsContainer"></div>
+
+
+    <!-- =========================================
+         LETTER
+         ========================================= -->
+
+    <section class="letter-section" id="letterSection">
+
+        <div class="letter">
+
+            <div class="letter-top">
+
+                <div class="heart">
+                    ♡
+                </div>
+
+                <h2 class="letter-title">
+                    Happyyy Bandaaa Dayyy
+                </h2>
+
+                <div class="letter-line"></div>
+
+            </div>
+
+
+            <div class="letter-text">
+
+                <p>
+                    Happy crazyyyy, annoyingggg, favouriteeeee
+                    <strong>banda dayyyy babbuuu</strong> 🫠❤️
+                </p>
+
+                <br>
+
+                <p>
+                    Samajh ni arha kya likhu buttt...
+                    <strong>tu meri life ka bohotttt specially parttt haiiii.</strong>
+                </p>
+
+                <br>
+
+                <p>
+                    Terse baat krna, faltu faltu questions puchna,
+                    bak14ak maarna, pareshan krnaaaaaa,
+                    kaleshhhh heheheee...
+                    <strong>sabb meraaa favvv parttt haiii 🫠</strong>
+                </p>
+
+                <br>
+
+                <p>
+                    Idk future kaaa buttt abhiiii ek dam perfect haiii
+                    (bs wo kalesh ke baad chup hona chor ke 🥲).
+                </p>
+
+                <br>
+
+                <p>
+                    Thankkk uuu merkooo itnaa Jhene ke liyeee,
+                    meri sari faaltu baate sun ne ke liyee 😭😚
+                </p>
+
+                <br>
+
+                <p>
+                    Aage bhi esi pyarrr se jhelte rehnaaa 👹
+                </p>
+
+                <br>
+
+                <p>
+                    Sorrryyy kuch aur banana ka / krne ka time nahi milaaa 🥲
+                    buttt I still wanted to make a little something for you.
+                </p>
+
+                <br>
+
+                <p>
+                    <strong>Lovvveeee uuuuhhhh bachheeeee</strong>
+                    💋💋💋💋😚😚💋💋🫶🫶🫶🫶🫶🫶🫶
+                    💋💋💋💋😚😚💋🫶💋💋😚😚😚😚🫶🫶🫠🫠
+                </p>
+
+            </div>
+
+
+            <div class="signature">
+                yours, always ♡
+            </div>
+
+        </div>
+
+    </section>
+
+
+<script>
+
+    /* =========================================
+       ELEMENTS
+       ========================================= */
+
+    const bikeButton = document.getElementById("bikeButton");
+    const startScreen = document.getElementById("startScreen");
+    const blast = document.getElementById("blast");
+    const letterSection = document.getElementById("letterSection");
+    const heartsContainer = document.getElementById("heartsContainer");
+
+
+    /* =========================================
+       CLICK BIKE
+       ========================================= */
+
+    bikeButton.addEventListener("click", () => {
+
+        /* Prevent clicking multiple times */
+        bikeButton.disabled = true;
+
+        /* Hide bike */
+        bikeButton.style.transition = "0.25s ease";
+        bikeButton.style.transform = "scale(0)";
+        bikeButton.style.opacity = "0";
+
+        /* Start blast */
+        blast.classList.add("active");
+
+        /* Darken start screen slightly */
+        startScreen.style.transition = "0.7s ease";
+        startScreen.style.transform = "scale(1.04)";
+        startScreen.style.opacity = "0";
+
+        /* Create some hearts immediately */
+        createHearts(12);
+
+        /* Show letter */
+        setTimeout(() => {
+
+            startScreen.classList.add("hide");
+            letterSection.classList.add("show");
+
+            createHearts(18);
+
+        }, 650);
+
+        /* More hearts after letter appears */
+        setTimeout(() => {
+            createHearts(20);
+        }, 1400);
+
+    });
+
+
+    /* =========================================
+       FLOATING HEARTS
+       ========================================= */
+
+    function createHearts(amount) {
+
+        const heartSymbols = [
+            "♡",
+            "♥",
+            "🫶",
+            "💗",
+            "❤",
+            "✦"
+        ];
+
+        for (let i = 0; i < amount; i++) {
+
+            const heart =
+                document.createElement("div");
+
+            heart.classList.add("floating-heart");
+
+            heart.textContent =
+                heartSymbols[
+                    Math.floor(
+                        Math.random() * heartSymbols.length
+                    )
+                ];
+
+            /* Random horizontal position */
+            heart.style.left =
+                Math.random() * 100 + "%";
+
+            /* Random size */
+            const size =
+                12 + Math.random() * 17;
+
+            heart.style.fontSize =
+                size + "px";
+
+            /* Random speed */
+            const duration =
+                5 + Math.random() * 5;
+
+            heart.style.animationDuration =
+                duration + "s";
+
+            /* Random delay */
+            heart.style.animationDelay =
+                Math.random() * 2 + "s";
+
+            /* Random sideways movement */
+            heart.style.setProperty(
+                "--drift",
+                (Math.random() * 160 - 80) + "px"
+            );
+
+            heartsContainer.appendChild(heart);
+
+            /* Remove old hearts */
+            setTimeout(() => {
+                heart.remove();
+            }, (duration + 3) * 1000);
+
+        }
+
+    }
+
+
+    /* =========================================
+       KEEP CREATING A FEW HEARTS
+       ========================================= */
+
+    setInterval(() => {
+
+        if (
+            letterSection.classList.contains("show")
+        ) {
+            createHearts(2);
+        }
+
+    }, 1400);
+
+</script>
+
+</body>
+</html>

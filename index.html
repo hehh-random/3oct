@@ -4,654 +4,1440 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>For My Babuuu ♡</title>
+<title>Happyyy Bandaaa Dayyy ♡</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+    background: #1b1415;
+    font-family: "Cormorant Garamond", serif;
+}
+
+
+/* =========================================================
+   BACKGROUND IMAGE
+========================================================= */
+
+.background {
+    position: fixed;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(25, 16, 17, 0.20),
+            rgba(25, 16, 17, 0.28)
+        ),
+        url("background.png");
+
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    transform: scale(1.02);
+
+    z-index: -5;
+}
+
+
+/* Slight cinematic overlay */
+
+.background-overlay {
+    position: fixed;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            transparent 35%,
+            rgba(0,0,0,0.22) 100%
+        );
+
+    z-index: -4;
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   INTRO TEXT
+========================================================= */
+
+.intro {
+    position: fixed;
+    top: 8%;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 90%;
+
+    text-align: center;
+
+    color: white;
+
+    z-index: 5;
+
+    text-shadow:
+        0 4px 20px rgba(0,0,0,0.35);
+
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+}
+
+.intro.hide {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-15px);
+}
+
+
+.small-line {
+    font-size: 0.72rem;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 8px;
+
+    opacity: 0.9;
+}
+
+
+.intro-title {
+    font-family: "Great Vibes", cursive;
+
+    font-size: clamp(
+        3.5rem,
+        8vw,
+        6.5rem
+    );
+
+    font-weight: 400;
+
+    line-height: 0.95;
+}
+
+
+.hint {
+    margin-top: 13px;
+
+    font-size: clamp(
+        1rem,
+        2vw,
+        1.25rem
+    );
+
+    opacity: 0.92;
+}
+
+
+/* =========================================================
+   ROAD / GLOW LINE
+========================================================= */
+
+.road-glow {
+    position: fixed;
+
+    bottom: 24%;
+
+    left: 0;
+
+    width: 100%;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            to right,
+            transparent,
+            rgba(255,255,255,0.30),
+            transparent
+        );
+
+    opacity: 0.65;
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   BIKE
+========================================================= */
+
+.bike-container {
+
+    position: fixed;
+
+    top: 62%;
+
+    left: -280px;
+
+    width: clamp(
+        190px,
+        25vw,
+        310px
+    );
+
+    z-index: 10;
+
+    animation:
+        rideAcross
+        7s
+        linear
+        infinite;
+
+    cursor: pointer;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.5s ease;
+}
+
+
+.bike-container img {
+
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    filter:
+        drop-shadow(
+            0 15px 18px rgba(0,0,0,0.30)
+        );
+
+    user-select: none;
+
+    -webkit-user-drag: none;
+
+    animation:
+        bikeBounce
+        0.65s
+        ease-in-out
+        infinite alternate;
+}
+
+
+@keyframes rideAcross {
+
+    0% {
+        left: -300px;
     }
 
-    html,
-    body {
-        width: 100%;
-        min-height: 100%;
+    100% {
+        left: calc(100vw + 300px);
     }
 
-    body {
-        font-family: "Cormorant Garamond", serif;
-        background: #111;
-        color: #fff;
-        overflow-x: hidden;
+}
+
+
+@keyframes bikeBounce {
+
+    from {
+        transform: translateY(0) rotate(-1deg);
     }
 
-    /* =========================================
-       BACKGROUND
-       ========================================= */
-
-    .background {
-        position: fixed;
-        inset: 0;
-        background:
-            linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.35)),
-            url("background.png") center center / cover no-repeat;
-        z-index: -2;
-        transform: scale(1.02);
+    to {
+        transform: translateY(-4px) rotate(1deg);
     }
 
-    .overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.18);
-        z-index: -1;
-        pointer-events: none;
-    }
+}
 
-    /* =========================================
-       START SCREEN
-       ========================================= */
 
-    .start-screen {
-        min-height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 25px;
-        transition: opacity 0.8s ease, visibility 0.8s ease;
-    }
+/* Bike hover */
 
-    .start-screen.hide {
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-    }
+.bike-container:hover {
 
-    .start-content {
-        text-align: center;
-        animation: fadeUp 1.5s ease;
-    }
+    transform:
+        translateY(-8px)
+        scale(1.04);
 
-    .small-text {
-        font-size: 1rem;
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        margin-bottom: 10px;
-        opacity: 0.9;
-    }
+}
 
-    .start-title {
-        font-family: "Great Vibes", cursive;
-        font-size: clamp(3.3rem, 10vw, 6rem);
-        line-height: 1;
-        text-shadow: 0 4px 25px rgba(0,0,0,0.4);
-    }
 
-    .instruction {
-        margin-top: 15px;
-        font-size: 1.15rem;
-        opacity: 0.9;
-    }
+/* When clicked */
 
-    /* =========================================
-       BIKE
-       ========================================= */
+.bike-container.hit {
 
-    .bike-wrap {
-        margin-top: 35px;
-    }
+    animation: none;
 
-    .bike {
-        border: none;
-        background: transparent;
-        font-size: clamp(5rem, 15vw, 8rem);
-        cursor: pointer;
-        transition: transform 0.25s ease;
-        filter: drop-shadow(0 8px 15px rgba(0,0,0,0.35));
-        animation: bikeFloat 2s ease-in-out infinite;
-    }
+    transform:
+        scale(0.35)
+        rotate(-10deg);
 
-    .bike:hover {
-        transform: scale(1.1);
-    }
+    opacity: 0;
+}
 
-    .bike:active {
-        transform: scale(0.95);
-    }
 
-    @keyframes bikeFloat {
-        0%, 100% {
-            transform: translateY(0) rotate(-1deg);
-        }
+/* =========================================================
+   CLICK MESSAGE
+========================================================= */
 
-        50% {
-            transform: translateY(-8px) rotate(1deg);
-        }
-    }
+.click-message {
 
-    /* =========================================
-       BLAST
-       ========================================= */
+    position: fixed;
 
-    .blast {
-        position: fixed;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%) scale(0);
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 20;
-        opacity: 0;
-    }
+    bottom: 10%;
 
-    .blast.active {
-        animation: blast 0.85s ease-out forwards;
-    }
+    left: 50%;
 
-    @keyframes blast {
-        0% {
-            transform: translate(-50%, -50%) scale(0);
-            opacity: 1;
-            box-shadow:
-                0 0 0 0 rgba(255,255,255,0.9);
-        }
+    transform: translateX(-50%);
 
-        35% {
-            transform: translate(-50%, -50%) scale(2);
-            opacity: 1;
-            box-shadow:
-                0 0 0 20px rgba(255,255,255,0.18),
-                0 0 0 55px rgba(255,200,120,0.12),
-                0 0 70px rgba(255,255,255,0.45);
-        }
+    color: white;
 
-        100% {
-            transform: translate(-50%, -50%) scale(12);
-            opacity: 0;
-            box-shadow:
-                0 0 0 100px rgba(255,255,255,0),
-                0 0 150px rgba(255,200,120,0);
-        }
-    }
+    font-size: 1rem;
 
-    /* =========================================
-       LETTER
-       ========================================= */
+    letter-spacing: 1px;
 
-    .letter-section {
-        position: fixed;
-        inset: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 22px;
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-        transition: opacity 1s ease, visibility 1s ease;
-        overflow-y: auto;
-    }
+    padding: 8px 18px;
 
-    .letter-section.show {
+    border-radius: 999px;
+
+    background:
+        rgba(0,0,0,0.25);
+
+    backdrop-filter: blur(7px);
+
+    z-index: 6;
+
+    transition:
+        opacity 0.6s ease;
+
+    white-space: nowrap;
+
+    text-shadow:
+        0 2px 10px rgba(0,0,0,0.4);
+}
+
+.click-message.hide {
+    opacity: 0;
+}
+
+
+/* =========================================================
+   EXPLOSION
+========================================================= */
+
+.explosion {
+
+    position: fixed;
+
+    left: 50%;
+    top: 62%;
+
+    width: 40px;
+    height: 40px;
+
+    transform:
+        translate(-50%, -50%)
+        scale(0);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: 50;
+
+    opacity: 0;
+}
+
+
+.explosion.active {
+
+    animation:
+        explode
+        0.9s
+        ease-out
+        forwards;
+}
+
+
+@keyframes explode {
+
+    0% {
+
         opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
-    }
 
-    .letter {
-        width: min(700px, 94vw);
-        max-height: 88vh;
-        overflow-y: auto;
-        padding: clamp(28px, 5vw, 50px);
-        border-radius: 25px;
-
-        background:
-            linear-gradient(
-                135deg,
-                rgba(255,255,255,0.90),
-                rgba(255,248,242,0.84)
-            );
-
-        color: #33272a;
+        transform:
+            translate(-50%, -50%)
+            scale(0);
 
         box-shadow:
-            0 25px 70px rgba(0,0,0,0.35),
-            0 0 0 1px rgba(255,255,255,0.45);
+            0 0 0 0 rgba(255,255,255,0.8);
 
-        transform: translateY(25px) scale(0.94);
-        transition: transform 1s ease;
-
-        scrollbar-width: thin;
     }
 
-    .letter-section.show .letter {
-        transform: translateY(0) scale(1);
+    35% {
+
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(2);
+
+        box-shadow:
+
+            0 0 0 20px
+            rgba(255,255,255,0.23),
+
+            0 0 0 50px
+            rgba(255,210,170,0.16),
+
+            0 0 70px
+            rgba(255,255,255,0.30);
+
     }
 
-    .letter-top {
-        text-align: center;
-        margin-bottom: 24px;
+    100% {
+
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            scale(10);
+
+        box-shadow:
+            0 0 0 120px
+            rgba(255,255,255,0);
+
     }
 
-    .heart {
-        font-size: 1.6rem;
-        margin-bottom: 5px;
+}
+
+
+/* =========================================================
+   SPARKLES
+========================================================= */
+
+.sparkle {
+
+    position: fixed;
+
+    pointer-events: none;
+
+    z-index: 60;
+
+    color: white;
+
+    font-size: 18px;
+
+    opacity: 0;
+
+    animation:
+        sparkleFly
+        1.1s
+        ease-out
+        forwards;
+}
+
+
+@keyframes sparkleFly {
+
+    0% {
+
+        opacity: 1;
+
+        transform:
+            translate(0,0)
+            scale(0.5)
+            rotate(0deg);
+
     }
 
-    .letter-title {
-        font-family: "Great Vibes", cursive;
-        font-size: clamp(3rem, 9vw, 5rem);
-        font-weight: 400;
-        line-height: 1;
-        color: #6e414c;
+    100% {
+
+        opacity: 0;
+
+        transform:
+            translate(
+                var(--x),
+                var(--y)
+            )
+            scale(1.3)
+            rotate(180deg);
+
     }
 
-    .letter-line {
-        width: 80px;
-        height: 1px;
-        background: #b38a72;
-        margin: 13px auto 0;
+}
+
+
+/* =========================================================
+   LETTER SCREEN
+========================================================= */
+
+.letter-screen {
+
+    position: fixed;
+
+    inset: 0;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 22px;
+
+    background:
+        rgba(18, 11, 13, 0.35);
+
+    backdrop-filter:
+        blur(5px);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
+
+    z-index: 40;
+
+    overflow-y: auto;
+}
+
+
+.letter-screen.show {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+}
+
+
+/* =========================================================
+   LETTER CARD
+========================================================= */
+
+.letter {
+
+    width: min(
+        720px,
+        94vw
+    );
+
+    max-height: 88vh;
+
+    overflow-y: auto;
+
+    padding:
+        clamp(27px, 5vw, 50px);
+
+    border-radius: 25px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(255,250,245,0.96),
+            rgba(247,235,227,0.94)
+        );
+
+    color: #35272b;
+
+    box-shadow:
+
+        0 30px 80px
+        rgba(0,0,0,0.38),
+
+        0 0 0 1px
+        rgba(255,255,255,0.5);
+
+    transform:
+        translateY(35px)
+        scale(0.92);
+
+    transition:
+        transform 1s cubic-bezier(
+            0.2,
+            0.8,
+            0.2,
+            1
+        );
+
+    scrollbar-width: thin;
+}
+
+
+.letter-screen.show .letter {
+
+    transform:
+        translateY(0)
+        scale(1);
+
+}
+
+
+/* =========================================================
+   LETTER HEADER
+========================================================= */
+
+.letter-header {
+
+    text-align: center;
+
+    margin-bottom: 28px;
+}
+
+
+.letter-heart {
+
+    font-size: 1.45rem;
+
+    color: #9a626b;
+
+    margin-bottom: 3px;
+}
+
+
+.letter-title {
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size:
+        clamp(
+            3.1rem,
+            8vw,
+            5.4rem
+        );
+
+    font-weight: 400;
+
+    line-height: 0.95;
+
+    color: #6e414c;
+}
+
+
+.letter-subtitle {
+
+    margin-top: 10px;
+
+    font-size: 0.9rem;
+
+    text-transform: uppercase;
+
+    letter-spacing: 3px;
+
+    color: #927b73;
+
+}
+
+
+.divider {
+
+    width: 75px;
+
+    height: 1px;
+
+    margin:
+        14px
+        auto
+        0;
+
+    background:
+        #b58a75;
+
+}
+
+
+/* =========================================================
+   LETTER TEXT
+========================================================= */
+
+.letter-body {
+
+    font-size:
+        clamp(
+            1.16rem,
+            2.5vw,
+            1.42rem
+        );
+
+    line-height: 1.62;
+
+}
+
+
+.letter-body p {
+    margin-bottom: 15px;
+}
+
+
+.highlight {
+
+    color: #734651;
+
+    font-weight: 600;
+
+}
+
+
+/* =========================================================
+   SIGNATURE
+========================================================= */
+
+.signature {
+
+    margin-top: 27px;
+
+    text-align: right;
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size: 2.7rem;
+
+    color: #70434e;
+
+}
+
+
+/* =========================================================
+   FLOATING HEARTS
+========================================================= */
+
+.hearts {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 70;
+
+    overflow: hidden;
+
+}
+
+
+.heart {
+
+    position: absolute;
+
+    bottom: -40px;
+
+    opacity: 0;
+
+    animation:
+        heartRise
+        linear
+        forwards;
+
+    user-select: none;
+
+}
+
+
+@keyframes heartRise {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translateY(0)
+            translateX(0)
+            scale(0.7);
+
     }
 
-    .letter-text {
-        font-size: clamp(1.2rem, 2.6vw, 1.5rem);
-        line-height: 1.65;
-        text-align: left;
+    15% {
+        opacity: 0.75;
     }
 
-    .letter-text strong {
-        color: #6e414c;
-        font-weight: 600;
+    85% {
+        opacity: 0.55;
     }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            translateY(-110vh)
+            translateX(var(--drift))
+            scale(1.2);
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .background {
+
+        background-position:
+            center center;
+
+    }
+
+
+    .intro {
+
+        top: 7%;
+
+    }
+
+
+    .bike-container {
+
+        top: 67%;
+
+        width:
+            clamp(
+                160px,
+                46vw,
+                220px
+            );
+
+    }
+
+
+    .road-glow {
+
+        bottom: 22%;
+
+    }
+
+
+    .click-message {
+
+        bottom: 8%;
+
+        font-size: 0.92rem;
+
+    }
+
+
+    .letter {
+
+        max-height: 91vh;
+
+        padding:
+            25px
+            20px;
+
+        border-radius: 21px;
+
+    }
+
+
+    .letter-body {
+
+        font-size: 1.15rem;
+
+        line-height: 1.55;
+
+    }
+
 
     .signature {
-        margin-top: 25px;
-        text-align: right;
-        font-family: "Great Vibes", cursive;
-        color: #6e414c;
-        font-size: 2.5rem;
+
+        font-size: 2.35rem;
+
     }
 
-    /* =========================================
-       FLOATING HEARTS
-       ========================================= */
+}
 
-    .hearts-container {
-        position: fixed;
-        inset: 0;
-        overflow: hidden;
-        pointer-events: none;
-        z-index: 5;
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .intro-title {
+
+        font-size: 3.1rem;
+
     }
 
-    .floating-heart {
-        position: absolute;
-        bottom: -30px;
-        animation: rise linear forwards;
-        opacity: 0;
-        user-select: none;
+    .hint {
+
+        font-size: 1rem;
+
     }
 
-    @keyframes rise {
-        0% {
-            transform: translateY(0) scale(0.7) rotate(0deg);
-            opacity: 0;
-        }
+    .bike-container {
 
-        15% {
-            opacity: 0.75;
-        }
+        width: 155px;
 
-        80% {
-            opacity: 0.55;
-        }
-
-        100% {
-            transform:
-                translateY(-110vh)
-                translateX(var(--drift))
-                scale(1.2)
-                rotate(18deg);
-            opacity: 0;
-        }
     }
 
-    /* =========================================
-       MOBILE
-       ========================================= */
+}
 
-    @media (max-width: 600px) {
-        .letter {
-            max-height: 90vh;
-            padding: 25px 20px;
-            border-radius: 20px;
-        }
-
-        .letter-text {
-            line-height: 1.55;
-        }
-
-        .signature {
-            font-size: 2.1rem;
-        }
-    }
-
-    /* =========================================
-       ANIMATIONS
-       ========================================= */
-
-    @keyframes fadeUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
 </style>
 </head>
 
+
 <body>
 
-    <!-- BACKGROUND -->
-    <div class="background"></div>
-    <div class="overlay"></div>
 
-    <!-- =========================================
-         START SCREEN
-         ========================================= -->
+<!-- =======================================================
+     BACKGROUND
+======================================================= -->
 
-    <section class="start-screen" id="startScreen">
+<div class="background"></div>
 
-        <div class="start-content">
+<div class="background-overlay"></div>
 
-            <div class="small-text">
-                a little something for you ♡
+
+<!-- =======================================================
+     INTRO
+======================================================= -->
+
+<div class="intro" id="intro">
+
+    <div class="small-line">
+        just a tiny surprise
+    </div>
+
+    <h1 class="intro-title">
+        Happyyy Bandaaa<br>
+        Dayyy Babbuuu 🫠
+    </h1>
+
+    <p class="hint">
+        there's something coming your way...
+    </p>
+
+</div>
+
+
+<!-- =======================================================
+     LITTLE ROAD LIGHT
+======================================================= -->
+
+<div class="road-glow"></div>
+
+
+<!-- =======================================================
+     MOVING BIKE
+======================================================= -->
+
+<div
+    class="bike-container"
+    id="bike">
+
+    <img
+        src="bike-cutout.png"
+        alt="A little surprise bike">
+
+</div>
+
+
+<div
+    class="click-message"
+    id="clickMessage">
+
+    catch the bike hehe 👀
+
+</div>
+
+
+<!-- =======================================================
+     EXPLOSION
+======================================================= -->
+
+<div
+    class="explosion"
+    id="explosion">
+</div>
+
+
+<!-- =======================================================
+     HEARTS
+======================================================= -->
+
+<div
+    class="hearts"
+    id="hearts">
+</div>
+
+
+<!-- =======================================================
+     LETTER
+======================================================= -->
+
+<section
+    class="letter-screen"
+    id="letterScreen">
+
+
+    <div class="letter">
+
+
+        <!-- HEADER -->
+
+        <div class="letter-header">
+
+            <div class="letter-heart">
+                ♡
             </div>
 
-            <h1 class="start-title">
-                Happyyy<br>
-                Bandaaa Dayyy 🫠
-            </h1>
+            <h2 class="letter-title">
+                Happyyy Bandaaa Dayyy
+            </h2>
 
-            <p class="instruction">
-                I have something for you...
-            </p>
-
-            <div class="bike-wrap">
-
-                <button
-                    class="bike"
-                    id="bikeButton"
-                    aria-label="Open your surprise">
-                    🏍️
-                </button>
-
+            <div class="letter-subtitle">
+                for my babuuu
             </div>
 
-            <p class="instruction">
-                click me hehe
-            </p>
+            <div class="divider"></div>
 
         </div>
 
-    </section>
+
+        <!-- MESSAGE -->
+
+        <div class="letter-body">
 
 
-    <!-- =========================================
-         BLAST
-         ========================================= -->
-
-    <div class="blast" id="blast"></div>
-
-
-    <!-- =========================================
-         HEARTS
-         ========================================= -->
-
-    <div class="hearts-container" id="heartsContainer"></div>
+            <p>
+                Happy crazyyyy, annoyingggg,
+                favouriteeeee
+                <span class="highlight">
+                    banda dayyyy babbuuu
+                </span>
+                🫠❤️
+            </p>
 
 
-    <!-- =========================================
-         LETTER
-         ========================================= -->
-
-    <section class="letter-section" id="letterSection">
-
-        <div class="letter">
-
-            <div class="letter-top">
-
-                <div class="heart">
-                    ♡
-                </div>
-
-                <h2 class="letter-title">
-                    Happyyy Bandaaa Dayyy
-                </h2>
-
-                <div class="letter-line"></div>
-
-            </div>
+            <p>
+                Samajh ni arha ky likhu buttt....
+                <span class="highlight">
+                    TU meri life ka bohotttt specially parttt haiiii..
+                </span>
+            </p>
 
 
-            <div class="letter-text">
-
-                <p>
-                    Happy crazyyyy, annoyingggg, favouriteeeee
-                    <strong>banda dayyyy babbuuu</strong> 🫠❤️
-                </p>
-
-                <br>
-
-                <p>
-                    Samajh ni arha kya likhu buttt...
-                    <strong>tu meri life ka bohotttt specially parttt haiiii.</strong>
-                </p>
-
-                <br>
-
-                <p>
-                    Terse baat krna, faltu faltu questions puchna,
-                    bak14ak maarna, pareshan krnaaaaaa,
-                    kaleshhhh heheheee...
-                    <strong>sabb meraaa favvv parttt haiii 🫠</strong>
-                </p>
-
-                <br>
-
-                <p>
-                    Idk future kaaa buttt abhiiii ek dam perfect haiii
-                    (bs wo kalesh ke baad chup hona chor ke 🥲).
-                </p>
-
-                <br>
-
-                <p>
-                    Thankkk uuu merkooo itnaa Jhene ke liyeee,
-                    meri sari faaltu baate sun ne ke liyee 😭😚
-                </p>
-
-                <br>
-
-                <p>
-                    Aage bhi esi pyarrr se jhelte rehnaaa 👹
-                </p>
-
-                <br>
-
-                <p>
-                    Sorrryyy kuch aur banana ka / krne ka time nahi milaaa 🥲
-                    buttt I still wanted to make a little something for you.
-                </p>
-
-                <br>
-
-                <p>
-                    <strong>Lovvveeee uuuuhhhh bachheeeee</strong>
-                    💋💋💋💋😚😚💋💋🫶🫶🫶🫶🫶🫶🫶
-                    💋💋💋💋😚😚💋🫶💋💋😚😚😚😚🫶🫶🫠🫠
-                </p>
-
-            </div>
+            <p>
+                Terse baat krna, faltu faltu questions puchna,
+                bak14ti maarna, pareshan krnaaaaaa..
+                kaleshhhh hehehee...
+                <span class="highlight">
+                    sabbbb meraaa favvv parttt haiii
+                </span>
+                🫠
+            </p>
 
 
-            <div class="signature">
-                yours, always ♡
-            </div>
+            <p>
+                Idk future kaaa buttt abhiiii
+                ek dam perfect haiii
+                (bs wo kalesh ke baad chup hona
+                chor ke 🥲)
+            </p>
+
+
+            <p>
+                Thankkk uuu merkooo itnaa Jhene ke liyeee,
+                meri sari faaltu baate sun ne ke liyee
+                😭😚
+            </p>
+
+
+            <p>
+                Aage bhi esi pyarrr se
+                jhelte rehnaaa 👹
+            </p>
+
+
+            <p>
+                Sorrryyy kuch aur banana ka /
+                krne ka time nahi milaaa 🥲
+            </p>
+
+
+            <p>
+                But stilllll...
+                mujhe kuch chota sa hi
+                banana tha tumhare liyeee
+                because
+                <span class="highlight">
+                    you are actually very special to me.
+                </span>
+            </p>
+
+
+            <p>
+                Lovvveeee uuuuhhhh
+                <span class="highlight">
+                    bachheeeee
+                </span>
+                💋💋💋💋😚😚💋💋🫶🫶🫶🫶🫶🫶🫶
+                💋💋💋💋😚😚💋🫶💋💋😚😚😚😚🫶🫶🫠🫠
+            </p>
+
 
         </div>
 
-    </section>
+
+        <!-- SIGNATURE -->
+
+        <div class="signature">
+
+            ♡ yours, the annoying one
+
+        </div>
+
+
+    </div>
+
+</section>
+
 
 
 <script>
 
-    /* =========================================
-       ELEMENTS
-       ========================================= */
+/* =========================================================
+   GET ELEMENTS
+========================================================= */
 
-    const bikeButton = document.getElementById("bikeButton");
-    const startScreen = document.getElementById("startScreen");
-    const blast = document.getElementById("blast");
-    const letterSection = document.getElementById("letterSection");
-    const heartsContainer = document.getElementById("heartsContainer");
+const bike =
+    document.getElementById("bike");
+
+const explosion =
+    document.getElementById("explosion");
+
+const letterScreen =
+    document.getElementById("letterScreen");
+
+const intro =
+    document.getElementById("intro");
+
+const clickMessage =
+    document.getElementById("clickMessage");
+
+const hearts =
+    document.getElementById("hearts");
 
 
-    /* =========================================
-       CLICK BIKE
-       ========================================= */
+/* =========================================================
+   BIKE CLICK
+========================================================= */
 
-    bikeButton.addEventListener("click", () => {
+bike.addEventListener("click", () => {
 
-        /* Prevent clicking multiple times */
-        bikeButton.disabled = true;
+    /* Stop repeated clicks */
 
-        /* Hide bike */
-        bikeButton.style.transition = "0.25s ease";
-        bikeButton.style.transform = "scale(0)";
-        bikeButton.style.opacity = "0";
+    bike.style.pointerEvents = "none";
 
-        /* Start blast */
-        blast.classList.add("active");
 
-        /* Darken start screen slightly */
-        startScreen.style.transition = "0.7s ease";
-        startScreen.style.transform = "scale(1.04)";
-        startScreen.style.opacity = "0";
+    /* Hide little hint */
 
-        /* Create some hearts immediately */
-        createHearts(12);
+    clickMessage.classList.add("hide");
 
-        /* Show letter */
+
+    /* Hide intro text */
+
+    intro.classList.add("hide");
+
+
+    /* Save bike position */
+
+    const bikeRect =
+        bike.getBoundingClientRect();
+
+
+    /*
+       Move explosion to exactly
+       where the bike was clicked.
+    */
+
+    explosion.style.left =
+        (
+            bikeRect.left +
+            bikeRect.width / 2
+        ) + "px";
+
+
+    explosion.style.top =
+        (
+            bikeRect.top +
+            bikeRect.height / 2
+        ) + "px";
+
+
+    /* Remove old animation if necessary */
+
+    explosion.classList.remove("active");
+
+    void explosion.offsetWidth;
+
+    explosion.classList.add("active");
+
+
+    /* Bike disappears */
+
+    bike.classList.add("hit");
+
+
+    /* Create sparkles */
+
+    createSparkles(
+        bikeRect.left +
+        bikeRect.width / 2,
+
+        bikeRect.top +
+        bikeRect.height / 2
+    );
+
+
+    /* Hearts */
+
+    createHearts(15);
+
+
+    /*
+       Show letter after blast.
+    */
+
+    setTimeout(() => {
+
+        letterScreen.classList.add("show");
+
+        createHearts(25);
+
+    }, 700);
+
+
+});
+
+
+/* =========================================================
+   SPARKLES
+========================================================= */
+
+function createSparkles(x, y) {
+
+    const symbols = [
+        "✦",
+        "✧",
+        "⋆",
+        "♡",
+        "★"
+    ];
+
+
+    for (
+        let i = 0;
+        i < 24;
+        i++
+    ) {
+
+        const sparkle =
+            document.createElement("div");
+
+
+        sparkle.className =
+            "sparkle";
+
+
+        sparkle.textContent =
+            symbols[
+                Math.floor(
+                    Math.random() *
+                    symbols.length
+                )
+            ];
+
+
+        sparkle.style.left =
+            x + "px";
+
+
+        sparkle.style.top =
+            y + "px";
+
+
+        sparkle.style.setProperty(
+            "--x",
+            (
+                Math.random() *
+                240 -
+                120
+            ) + "px"
+        );
+
+
+        sparkle.style.setProperty(
+            "--y",
+            (
+                Math.random() *
+                240 -
+                120
+            ) + "px"
+        );
+
+
+        sparkle.style.fontSize =
+            (
+                12 +
+                Math.random() * 14
+            ) + "px";
+
+
+        document.body.appendChild(
+            sparkle
+        );
+
+
         setTimeout(() => {
 
-            startScreen.classList.add("hide");
-            letterSection.classList.add("show");
+            sparkle.remove();
 
-            createHearts(18);
-
-        }, 650);
-
-        /* More hearts after letter appears */
-        setTimeout(() => {
-            createHearts(20);
-        }, 1400);
-
-    });
-
-
-    /* =========================================
-       FLOATING HEARTS
-       ========================================= */
-
-    function createHearts(amount) {
-
-        const heartSymbols = [
-            "♡",
-            "♥",
-            "🫶",
-            "💗",
-            "❤",
-            "✦"
-        ];
-
-        for (let i = 0; i < amount; i++) {
-
-            const heart =
-                document.createElement("div");
-
-            heart.classList.add("floating-heart");
-
-            heart.textContent =
-                heartSymbols[
-                    Math.floor(
-                        Math.random() * heartSymbols.length
-                    )
-                ];
-
-            /* Random horizontal position */
-            heart.style.left =
-                Math.random() * 100 + "%";
-
-            /* Random size */
-            const size =
-                12 + Math.random() * 17;
-
-            heart.style.fontSize =
-                size + "px";
-
-            /* Random speed */
-            const duration =
-                5 + Math.random() * 5;
-
-            heart.style.animationDuration =
-                duration + "s";
-
-            /* Random delay */
-            heart.style.animationDelay =
-                Math.random() * 2 + "s";
-
-            /* Random sideways movement */
-            heart.style.setProperty(
-                "--drift",
-                (Math.random() * 160 - 80) + "px"
-            );
-
-            heartsContainer.appendChild(heart);
-
-            /* Remove old hearts */
-            setTimeout(() => {
-                heart.remove();
-            }, (duration + 3) * 1000);
-
-        }
+        }, 1200);
 
     }
 
+}
 
-    /* =========================================
-       KEEP CREATING A FEW HEARTS
-       ========================================= */
 
-    setInterval(() => {
+/* =========================================================
+   FLOATING HEARTS
+========================================================= */
 
-        if (
-            letterSection.classList.contains("show")
-        ) {
-            createHearts(2);
-        }
+function createHearts(amount) {
 
-    }, 1400);
+    const symbols = [
+        "♡",
+        "♥",
+        "❤",
+        "💗",
+        "🫶",
+        "✦"
+    ];
+
+
+    for (
+        let i = 0;
+        i < amount;
+        i++
+    ) {
+
+        const heart =
+            document.createElement("div");
+
+
+        heart.className =
+            "heart";
+
+
+        heart.textContent =
+            symbols[
+                Math.floor(
+                    Math.random() *
+                    symbols.length
+                )
+            ];
+
+
+        heart.style.left =
+            (
+                Math.random() * 100
+            ) + "%";
+
+
+        heart.style.fontSize =
+            (
+                13 +
+                Math.random() * 18
+            ) + "px";
+
+
+        heart.style.animationDuration =
+            (
+                5 +
+                Math.random() * 5
+            ) + "s";
+
+
+        heart.style.animationDelay =
+            (
+                Math.random() * 1.5
+            ) + "s";
+
+
+        heart.style.setProperty(
+            "--drift",
+            (
+                Math.random() * 180 -
+                90
+            ) + "px"
+        );
+
+
+        hearts.appendChild(
+            heart
+        );
+
+
+        setTimeout(() => {
+
+            heart.remove();
+
+        }, 11000);
+
+    }
+
+}
+
+
+/* =========================================================
+   KEEP HEARTS FLOATING AFTER LETTER OPENS
+========================================================= */
+
+setInterval(() => {
+
+    if (
+        letterScreen.classList.contains("show")
+    ) {
+
+        createHearts(2);
+
+    }
+
+}, 1300);
 
 </script>
 
